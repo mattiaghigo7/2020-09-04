@@ -1,6 +1,6 @@
 package it.polito.tdp.imdb.model;
 
-public class Movie {
+public class Movie implements Comparable<Movie>{
 	Integer id;
 	String name;
 	Integer year;
@@ -74,6 +74,11 @@ public class Movie {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Movie o) {
+		return this.id-o.id;
 	}
 	
 	
