@@ -45,14 +45,25 @@ public class Model {
 		}
 		Movie momentaneo = parziale.get(parziale.size()-1);
 		for(Movie m : raggiungibili) {
-			DefaultWeightedEdge e = this.grafo.getEdge(m, momentaneo);
-			if(!parziale.contains(m)) {
-				if(grafo.getEdgeWeight(e)>=i) {
-					parziale.add(m);
-					ricorsione(parziale,this.getAdiacenti(m),(int) grafo.getEdgeWeight(e));
-					parziale.remove(m);
+			for(Coppia c : this.archi) {
+				if(c.getM1().equals(momentaneo) && c.getM2().equals(m)) {
+					if(!parziale.contains(m)) {
+						if(c.getN()>=i) {
+							parziale.add(m);
+							ricorsione(parziale,this.getAdiacenti(m),(int) c.getN());
+							parziale.remove(m);
+						}
+					}
 				}
 			}
+//			DefaultWeightedEdge e = this.grafo.getEdge(m, momentaneo);
+//			if(!parziale.contains(m)) {
+//				if(grafo.getEdgeWeight(e)>=i) {
+//					parziale.add(m);
+//					ricorsione(parziale,this.getAdiacenti(m),(int) grafo.getEdgeWeight(e));
+//					parziale.remove(m);
+//				}
+//			}
 		}
 	}
 	
